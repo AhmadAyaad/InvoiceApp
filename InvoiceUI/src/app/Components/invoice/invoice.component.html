@@ -1,0 +1,109 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-2">
+      <p>Invoice Number</p>
+    </div>
+    <div class="col-2 ml-5">
+      <input type="text" class="form-control" [(ngModel)]="invoiceNumber" />
+    </div>
+
+    <div class="col-2 offset-1">
+      <p>Invoice Date</p>
+    </div>
+    <div class="col-4">
+      <input type="date" class="form-control" [(ngModel)]="date" />
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="offset-1">
+      <div class="dropdown">
+        Store
+        <select (change)="changeStore($event.target.value)">
+          <option *ngFor="let store of stores" [value]="store.storeId">
+            {{ store.storeName }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-1">
+      <div class="dropdown">
+        product
+        <select (change)="changeProduct($event.target.value)">
+          <!--  -->
+          <!-- value ={{product}} -->
+          <!-- [ngValue]="product.productName" -->
+          <option *ngFor="let product of products" [value]="product.productId">
+            {{ product.productName }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-1">
+      <div class="dropdown">
+        unit
+        <select (change)="changeUnit($event.target.value)">
+          <option *ngFor="let unit of units" [value]="unit.unitId">
+            {{ unit.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-1">
+      <label>Price</label>
+      <input type="number" [(ngModel)]="price" />
+    </div>
+    <div class="ml-1 col-1">
+      <label>Quantity</label>
+      <input type="number" [(ngModel)]="quantity" />
+    </div>
+    <div class="ml-1 col-1 mb-4">
+      <label>Total</label>
+      <input type="number" [(ngModel)]="total" />
+    </div>
+    <div class="ml-1 col-1">
+      <label>Discount</label>
+      <input type="number" [(ngModel)]="discount" />
+    </div>
+    <div class="ml-1 col-1">
+      <label>Net</label>
+      <input type="number" [(ngModel)]="net" />
+    </div>
+
+    <div class="offset-1 col-1 mt-2">
+      <button class="btn btn-success" (click)="addToTable()">Add</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th>product</th>
+          <th>unit</th>
+          <th>price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Discount</th>
+          <th>Net</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of tableData">
+          <td>{{ data.product }}</td>
+          <td>{{data.unit}}</td>
+          <td>{{data.price}}</td>
+          <td>{{data.quantity}}</td>
+          <td>{{data.total}}</td>
+          <td>{{data.discount}}</td>
+          <td>{{data.net}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
